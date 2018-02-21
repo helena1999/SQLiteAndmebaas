@@ -56,6 +56,22 @@ public class DbToode {
         return s;
 
     }
+    public void kustuta (long id){
+        ava();
+        db.delete(dbHelper.TABELI_NIMI, dbHelper.ID + "=" + id, null);
+        sulge();
+    }
+    public void uuenda (long id, String nimi, int kogus, double hind){
+        ava();
+        ContentValues values = new ContentValues();
+        values.put(dbHelper.NIMI, nimi);
+        values.put(dbHelper.KOGUS, kogus);
+        values.put(dbHelper.HIND, hind);
+        db.update(dbHelper.TABELI_NIMI,values ,dbHelper.ID + "=" + id, null);
+        sulge();
+
+
+    }
 
     public class DbHelper extends SQLiteOpenHelper{
         public static final String DB_NIMI = "toode.db";
